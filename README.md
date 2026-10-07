@@ -33,8 +33,12 @@ Requires the official editor **4.7.2-stable** (mono), on Windows.
    ```
    Godot_v4.7.2-stable_mono_win64_console.exe --path Game --editor res://main.tscn
    ```
-3. With the editor still running, rebuild twice from a terminal (each rebuild
-   hot-reloads the assembly):
+3. In the editor's bottom **MSBuild** panel, click **Rebuild Project**. The
+   errors below appear in the editor Output (and stderr). Click it again to
+   trigger another reload.
+
+   The same trigger can be scripted from a terminal — that is what the numbers
+   below were collected with:
    ```
    dotnet build Game/Game.csproj --no-incremental
    ```
