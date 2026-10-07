@@ -74,13 +74,16 @@ Measured on the versions above, two reloads per editor session:
 
 ## Verifying the fix
 
+Tracked upstream as [Cat-Lips/GodotSharp.SourceGenerators#210](https://github.com/Cat-Lips/GodotSharp.SourceGenerators/issues/210).
+
 The proposed fix replaces the compiler-generated closure with a method group on
 the outer `GodotObject` (`__OnNotify…NestedChanged`), which the engine can
 serialize and restore, and guards the subscription with `IsConnected`. Build the
-generator from the patched branch, drop the `.nupkg` into a local NuGet source,
-point `Game.csproj` at that version and repeat the steps above: stderr stays
-empty while both reloads still happen (`Assembly load context unloaded
-successfully.` appears twice on stdout).
+generator from
+[the patched branch](https://github.com/pcloves/GodotSharp.SourceGenerators/tree/fix/notify-resource-hot-reload),
+drop the `.nupkg` into a local NuGet source, point `Game.csproj` at that version
+and repeat the steps above: stderr stays empty while both reloads still happen
+(`Assembly load context unloaded successfully.` appears twice on stdout).
 
 ## Notes
 
